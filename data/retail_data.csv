@@ -1,0 +1,9 @@
+Region,Product,Sales,Advertising,Expenses
+North,Widget A,100,20,70
+East,Widget B,90,15,65
+South,Widget A,120,25,80
+West,Widget B,NaN,18,70
+North,Widget B,85,NaN,60
+East,Widget C,105,22,72
+South,Widget B,115,20,78
+West,Widget C,95,18,68
