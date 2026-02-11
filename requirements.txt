@@ -1,0 +1,10 @@
+azureml-sdk==1.60.0
+azureml-core
+pandas
+numpy
+scikit-learn==0.22.1
+scipy
+joblib
+azure-monitor-query
+azure-identity
+inference-schema
