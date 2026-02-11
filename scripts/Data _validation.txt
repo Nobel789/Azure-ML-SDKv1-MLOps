@@ -1,0 +1,65 @@
+import pandas as pd
+
+# Create and save a sample dataset
+data = {
+    "customer_id": [1, 2, 3, 4, 5],
+    "membership_level": ["Bronze", "Silver", "Gold", "Silver", "Bronze"]
+}
+
+# Create a DataFrame
+df = pd.DataFrame(data)
+
+# Save the DataFrame to a CSV file
+csv_filename = "customer_data.csv"
+df.to_csv(csv_filename, index=False)
+
+# Load the dataset
+incoming_data = pd.read_csv(csv_filename)
+
+# Validate the data
+def validate_data(df):
+    # Check for null values in 'customer_id'
+    if df['customer_id'].isnull().any():
+        print("Validation Error: 'customer_id' column contains null values.")
+    else:
+        print("No null values in 'customer_id' column.")
+
+    # Check that 'membership_level' contains only allowed values
+    allowed_values = {"Bronze", "Silver", "Gold"}
+    invalid_values = set(df['membership_level']) - allowed_values
+    if invalid_values:
+        print(f"Validation Error: 'membership_level' contains invalid values: {invalid_values}")
+    else:
+        print("All values in 'membership_level' are valid.")
+
+# Run validation
+validate_data(incoming_data)
+
+``````````
+from azureml.core import Workspace
+
+# Connect to Azure ML Workspace
+workspace = Workspace.from_config()
+
+# Access the deployed service
+service_name = 'my-model-service'
+service = workspace.webservices[service_name]
+
+# Enable Application Insights if not already enabled
+if not service.app_insights_enabled:
+    service.update(enable_app_insights=True)
+    print(f"Application Insights enabled for service: {service_name}")
+else:
+    print(f"Application Insights is already enabled for service: {service_name}")
+
+# Check the Application Insights link
+print(f"Application Insights URL: {service.scoring_uri}")
+
+``````````
+# Apply canary deployment to a limited number of users
+# This is pseudocode; it shows the business logic, but isn’t a full implementation
+canary_deployment_successful = service.canary_deploy()
+if canary_deployment_successful:
+    print("Canary deployment successful. Proceeding to full deployment.")
+else:
+    print("Canary deployment failed. Investigate issues before full deployment.")
