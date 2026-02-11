@@ -1,2 +1,5 @@
 # Azure-ML-SDKv1-MLOps
 A complete MLOps pipeline using Azure ML SDK v1 for regression models. Features automated data validation for retail data, secure AKS deployment with SSL, and drift detection. Includes auto-remediation logic to scale resources if latency exceeds 200ms.
+
+
+Azure ML MLOps: Regression Pipeline & MonitoringThis repository contains a production-ready MLOps workflow using Azure ML SDK v1. It focuses on the deployment and lifecycle management of regression models.🏗️ Project ComponentsData Validation: Automated scripts to ensure training data quality (e.g., checking for nulls in retail_data.csv).Deployment: High-scale deployment to AKS with SSL security and logging.Observability: Monitoring for data drift (KS-tests) and performance metrics via Azure Monitor.Auto-Remediation: A self-healing loop that scales resources or sends alerts if latency exceeds 200ms.📊 Monitoring ThresholdsMetricAlert ConditionActionResponse Time> 200 msScale Cluster / Log AlertAccuracy< 85%Trigger Retraining
